@@ -1,3 +1,4 @@
+// Инициализация WebApp
 Telegram.WebApp.ready();
 
 function saveData() {
@@ -6,10 +7,12 @@ function saveData() {
     
     // Проверка наличия ключа и значения
     if (key && value) {
-        Telegram.WebApp.CloudStorage.setItem(key, value).then(() => {
-            document.getElementById('output').innerText = `Data saved: { ${key}: ${value} }`;
-        }).catch(error => {
-            document.getElementById('output').innerText = `Error saving data: ${error.message}`;
+        Telegram.WebApp.CloudStorage.setItem(key, value, (result, error) => {
+            if (result) {
+                document.getElementById('output').innerText = `Data saved: { ${key}: ${value} }`;
+            } else {
+                document.getElementById('output').innerText = `Error saving data: ${error}`;
+            }
         });
     } else {
         document.getElementById('output').innerText = 'Please enter both key and value.';
@@ -21,14 +24,12 @@ function loadData() {
     
     // Проверка наличия ключа
     if (key) {
-        Telegram.WebApp.CloudStorage.getItem(key).then(value => {
-            if (value !== null) {
+        Telegram.WebApp.CloudStorage.getItem(key, (value, error) => {
+            if (value) {
                 document.getElementById('output').innerText = `Loaded data: { ${key}: ${value} }`;
             } else {
-                document.getElementById('output').innerText = `No data found for key: ${key}`;
+                document.getElementById('output').innerText = `Error loading data: ${error || 'No data found for key: ' + key}`;
             }
-        }).catch(error => {
-            document.getElementById('output').innerText = `Error loading data: ${error.message}`;
         });
     } else {
         document.getElementById('output').innerText = 'Please enter a key to load.';
