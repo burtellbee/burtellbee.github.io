@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
     const valueEl = document.getElementById('value');
     Telegram.WebApp.ready();
-    Telegram.WebApp.CloudStorage.getItem('value', (value) => {
-        console.log(value)
-        valueEl.innerText = value;
-    });
+    // Telegram.WebApp.CloudStorage.getItem('value', (value) => {
+    //     console.log(value)
+    //     valueEl.innerText = value;
+    // });
     const nameContainer = document.getElementById('name');
     nameContainer.innerText = '@user';
     const formContainer = document.getElementById('form');
@@ -20,4 +20,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         valueEl.innerText = val;
     })
+    function loadData() {
+        Telegram.WebApp.CloudStorage.getItem('value', function(value) {
+            if (value) {
+                document.getElementById('value').innerText = value;
+            } else {
+                document.getElementById('value').innerText = `No data found for!`;
+            }
+        });
+    }
 })
