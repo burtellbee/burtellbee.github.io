@@ -1,4 +1,4 @@
-window.Telegram.WebApp.ready();
+Telegram.WebApp.ready();
 
 function saveData() {
     const key = document.getElementById('inputKey').value;
@@ -6,7 +6,7 @@ function saveData() {
     
     // Проверка наличия ключа и значения
     if (key && value) {
-        Telegram.WebApp.storage.setItem(key, value).then(() => {
+        Telegram.WebApp.CloudStorage.setItem(key, value).then(() => {
             document.getElementById('output').innerText = `Data saved: { ${key}: ${value} }`;
         }).catch(error => {
             document.getElementById('output').innerText = `Error saving data: ${error.message}`;
@@ -21,7 +21,7 @@ function loadData() {
     
     // Проверка наличия ключа
     if (key) {
-        Telegram.WebApp.storage.getItem(key).then(value => {
+        Telegram.WebApp.CloudStorage.getItem(key).then(value => {
             if (value !== null) {
                 document.getElementById('output').innerText = `Loaded data: { ${key}: ${value} }`;
             } else {
