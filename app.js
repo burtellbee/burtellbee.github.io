@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
     Telegram.WebApp.ready();
-    const cloudValue = Telegram.WebApp.CloudStorage.getItem('value');
     const valueEl = document.getElementById('value');
-    if (cloudValue) {
-        valueEl.innerText = cloudValue;
-    }
+    Telegram.WebApp.CloudStorage.getItem('value', (v) => {
+        console.log(v);
+        valueEl.innerText = v;
+    });
     const nameContainer = document.getElementById('name');
     nameContainer.innerText = '@user';
     const formContainer = document.getElementById('form');
