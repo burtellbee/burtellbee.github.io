@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIRST TEST</title>
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <h1 id="name">username</h1>
-    <p>Value: <span id="value">0</span></p>
-    <form id="form">
-        <input type="textfield">
-        <button>Save!</button>
-    </form>
+    <h1>Telegram Mini App with Cloud Storage</h1>
+    <input type="text" id="inputKey" placeholder="Enter key">
+    <input type="text" id="inputValue" placeholder="Enter value">
+    <button onclick="saveData()">Save Data</button>
     <button onclick="loadData()">Load Data</button>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <p id="output"></p>
     <script src="app.js"></script>
-    <!-- Eruda is console for mobile browsers -->
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
 </body>
 </html>
