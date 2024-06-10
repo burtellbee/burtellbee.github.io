@@ -1,8 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
     const valueEl = document.getElementById('value');
     Telegram.WebApp.ready();
-    Telegram.WebApp.CloudStorage.getItem('value', (result) => {
-        console.log(result)
+    Telegram.WebApp.CloudStorage.getItem('value', (value) => {
+        console.log(value)
+        valueEl.innerText = value;
     });
     const nameContainer = document.getElementById('name');
     nameContainer.innerText = '@user';
